@@ -24,7 +24,7 @@ const typeDefs = `
     user: User
   }
   input BookInput{
-    authors: [Strings]
+    authors: [String]
     description: String
     title: String
     bookId: String
@@ -35,7 +35,7 @@ const typeDefs = `
    login(email:String, password:String):Auth
    addUser(username:String, email:String, password:String):Auth
    saveBook(criteria:BookInput):User
-   removeBook: (ID):User
+   removeBook(bookId: ID):User
   }
 `;
 
