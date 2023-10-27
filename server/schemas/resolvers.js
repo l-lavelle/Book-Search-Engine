@@ -12,8 +12,8 @@ const resolvers = {
       return User.findOne({ _id: userId });
     },
     me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
+      if (context) {
+        return User.findOne({ _id: context._id });
       }
       throw AuthenicationError;
     },
@@ -43,19 +43,19 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveBook: async (parent, { BookInput }, context) => {
-      if (context.user) {
+    saveBook: async (parent, { criteria }, context) => {
+      if (context) {
         return User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { savedBooks: BookInput } },
+          { _id: context._id },
+          { $addToSet: { savedBooks: criteria } },
           { new: true, runValidators: true }
         );
       }
     },
     removeBook: async (parent, { bookId }, context) => {
-      if (context.user) {
+      if (context) {
         return User.findOneAndUpdate(
-          { _id: context.user._id },
+          { _id: context._id },
           { $pull: { savedBooks: bookId } },
           { new: true }
         );

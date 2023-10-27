@@ -27,7 +27,10 @@ const startApolloServer = async () => {
     });
   }
 
-  app.use("/graphql", expressMiddleware(server));
+  const context = () => {
+    return { _id: "653ae6ede81ba79c490d6688" };
+  };
+  app.use("/graphql", expressMiddleware(server, { context }));
 
   db.once("open", () => {
     app.listen(PORT, () => {
