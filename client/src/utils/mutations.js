@@ -24,6 +24,32 @@ export const ADD_USER = gql`
   }
 `;
 
-export const SAVE_BOOK = gql``;
+export const SAVE_BOOK = gql`
+  mutation Mutation($criteria: BookInput) {
+    saveBook(criteria: $criteria) {
+      savedBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
+    }
+  }
+`;
 
-export const REMOVE_BOOK = gql``;
+export const REMOVE_BOOK = gql`
+  mutation Mutation($bookId: ID) {
+    removeBook(bookId: $bookId) {
+      savedBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
+    }
+  }
+`;
