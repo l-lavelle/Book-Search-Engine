@@ -20,6 +20,13 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  // const context = () => {
+  //   return { _id: "653ae6ede81ba79c490d6688" };
+  // };
+  // add , { context } into expressmiddleware to define
+  app.use("/graphql", expressMiddleware(server));
+  // didnt like passing context in middleware
+
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist")));
 
@@ -27,17 +34,6 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, "../client/dist/index.html"));
     });
   }
-
-  // const context = () => {
-  //   return { _id: "653ae6ede81ba79c490d6688" };
-  // };
-  // add , { context } into expressmiddleware to define
-  app.use(
-    "/graphql",
-    expressMiddleware(server, {
-      context: authMiddleware,
-    })
-  );
 
   db.once("open", () => {
     app.listen(PORT, () => {
