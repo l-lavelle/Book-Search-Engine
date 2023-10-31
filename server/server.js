@@ -9,6 +9,7 @@ const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -24,7 +25,7 @@ const startApolloServer = async () => {
   //   return { _id: "653ae6ede81ba79c490d6688" };
   // };
   // add , { context } into expressmiddleware to define
-  app.use("/graphql", expressMiddleware(server));
+  app.use("/graphql", expressMiddleware(server, { context: authMiddleware }));
   // didnt like passing context in middleware
 
   if (process.env.NODE_ENV === "production") {
