@@ -12,9 +12,9 @@ const resolvers = {
       return User.findOne({ _id: userId });
     },
     me: async (parent, args, context) => {
-      console.log("context", context.user);
-      if (context) {
-        return User.findOne({ _id: context._id });
+      // console.log("context", context.user);
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
       }
       throw AuthenicationError;
     },
@@ -45,19 +45,20 @@ const resolvers = {
       return { token, user };
     },
     saveBook: async (parent, { criteria }, context) => {
-      console.log("context", context);
-      if (context) {
+      // console.log("context", context);
+      // console.log("user context", context.user);
+      if (context.user) {
         return User.findOneAndUpdate(
-          { _id: context._id },
+          { _id: context.user._id },
           { $addToSet: { savedBooks: criteria } },
           { new: true, runValidators: true }
         );
       }
     },
     removeBook: async (parent, { bookId }, context) => {
-      if (context) {
+      if (context.user) {
         return User.findOneAndUpdate(
-          { _id: context._id },
+          { _id: context.user._id },
           { $pull: { savedBooks: { bookId } } },
           { new: true }
         );
