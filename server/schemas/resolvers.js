@@ -12,7 +12,6 @@ const resolvers = {
       return User.findOne({ _id: userId });
     },
     me: async (parent, args, context) => {
-      // console.log("context", context.user);
       if (context.user) {
         return User.findOne({ _id: context.user._id });
       }
@@ -45,8 +44,6 @@ const resolvers = {
       return { token, user };
     },
     saveBook: async (parent, { criteria }, context) => {
-      // console.log("context", context);
-      // console.log("user context", context.user);
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
