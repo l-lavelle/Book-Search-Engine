@@ -16,7 +16,10 @@ import {REMOVE_BOOK} from '../utils/mutations'
 
 
 const SavedBooks = () => {
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removeBook, { error }] = useMutation(REMOVE_BOOK,{refetchQueries:[
+    QUERY_ME,
+    'me'
+  ]});
   // const [userData, setUserData] = useState({});
   
   const { loading, data } = useQuery(QUERY_ME);
@@ -75,9 +78,9 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
+  // if (loading) {
+  //   return <h2>LOADING...</h2>;
+  // }
 
   return (
     <>
@@ -86,6 +89,9 @@ const SavedBooks = () => {
           <h1>Viewing saved books!</h1>
         </Container>
       </div>
+      {loading ? (
+            <div>Loading...</div>
+          ) : (
       <Container>
         <h2 className='pt-5'>
           {userData.savedBooks.length
@@ -112,6 +118,7 @@ const SavedBooks = () => {
           })}
         </Row>
       </Container>
+          )}
     </>
   );
 };

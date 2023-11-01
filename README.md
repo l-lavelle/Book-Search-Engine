@@ -54,8 +54,6 @@ To run the application locally use npm install to install all node packages from
 Use the link below to go directly to running application deployed on Heroku.
 <br>
 
-<!-- Fix image -->
-
 <img src="./client/images/book-search.png" width='700' height='auto'><br>
 
 ## License
