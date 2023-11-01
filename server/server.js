@@ -26,7 +26,6 @@ const startApolloServer = async () => {
   // };
   // add , { context } into expressmiddleware to define
   app.use("/graphql", expressMiddleware(server, { context: authMiddleware }));
-  // didnt like passing context in middleware
 
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist")));
