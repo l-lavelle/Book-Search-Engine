@@ -22,10 +22,12 @@ const SavedBooks = () => {
   ]});
   // const [userData, setUserData] = useState({});
   
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME, {
+    fetchPolicy: 'cache-and-network',
+  });
   console.log("saved book data", data)
   const userData = data?.me || [];
-
+  console.log(loading)
   // const profiles = data?.profiles || [];
   // use this to determine if `useEffect()` hook needs to run again
   // const userDataLength = Object.keys(userData).length;
