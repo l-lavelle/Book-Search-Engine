@@ -56,7 +56,7 @@ Use the link below to go directly to running application deployed on Heroku.
 
 <!-- Fix image -->
 
-<img src="./images/main-page.png" width='700' height='auto'><br>
+<img src="./client/images/book-search.png" width='700' height='auto'><br>
 
 ## License
 
@@ -68,6 +68,4 @@ N/A
 
 ## Deployed Application
 
-<!-- Add new Heroku Link when deployed -->
-
-[Heroku Link](https://frozen-meadow-91910-11d41093a8cd.herokuapp.com/)
+[Heroku Link](https://warm-stream-05414-f1d5d672d6d0.herokuapp.com)
