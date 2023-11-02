@@ -1,4 +1,4 @@
-# Book Search Enigine
+# Book Search Engine
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
